@@ -1,0 +1,28 @@
+services:
+  mariadb:
+    build:
+      context: ./requirements/mariadb
+      args:
+        MARIADB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+    volumes:
+      - database:/var/lib/mysql
+
+  wordpress:
+    build:
+      context: ./requirements/wordpress
+    volumes:
+      - repository:/var/www/html
+
+  nginx:
+    build:
+      context: ./requirements/nginx
+      args:
+        DOMAIN_NAME: ${DOMAIN_NAME}
+    ports:
+      - 443:443
+    volumes:
+      - repository:/var/www/html
+
+volumes:
+  database:
+  repository:
