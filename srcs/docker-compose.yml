@@ -1,11 +1,11 @@
 services:
-  mariadb:
-    build:
-      context: ./requirements/mariadb
-      args:
-        MARIADB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
-    volumes:
-      - database:/var/lib/mysql
+  # mariadb:
+  #   build:
+  #     context: ./requirements/mariadb
+  #     args:
+  #       MARIADB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+  #   volumes:
+  #     - database:/var/lib/mysql
 
   wordpress:
     build:
