@@ -1,20 +1,14 @@
-chrome:
-	google-chrome -incognito --user-data-dir="/tmp/chrome-local-test" --host-resolver-rules="MAP iandalou.42.fr 10.14.56.55" https://iandalou.42.fr
-
-sync:
-	git pull origin master
-	git add .
-	git commit -m "commit"
-	git push origin master
-
 up:
-	docker compose -f srcs/docker-compose.yml up --force-recreate -d
+	docker compose -f srcs/docker-compose.yml up
 
 down:
-	docker compose -f srcs/docker-compose.yml down --rmi all -v --remove-orphans
+	docker compose -f srcs/docker-compose.yml down
 
-rebuild: down
-	docker compose -f srcs/docker-compose.yml build --no-cache
+build:
+	docker compose -f srcs/docker-compose.yml build
 
 list:
 	docker compose -f srcs/docker-compose.yml ps -a
+
+clean:
+	docker compose -f srcs/docker-compose.yml down --rmi all -v --remove-orphans
